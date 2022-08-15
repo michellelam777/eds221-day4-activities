@@ -86,14 +86,18 @@ wave_power(T = 8, H = wave_heights)
 $$Pshallow = 0.81H^2T$$
 
 ```{r}
-wave_power_shallow <- function(depth, H, T) {
+wave_power_var_depth <- function(depth, H, T) {
   if (depth > 12) {
-    stop("this equation is for shallow depths. Input a depth of less than 12 mmeters.")
+    print(0.5 * (H^2) * T)
+    message("This outcome was calculated using the deep water equation for wave power (depth is greater than 12 meters)")
   }
-  print(0.81 * (H^2) * T)
+  else if (depth <= 12) {
+  print( 0.81 * (H^2) * T)
+    message("This outcome was calculated using the shallow water equation for wave power (depth is less than or equal to 12 meters)")
+  }
 }
 
-wave_power_shallow(depth = 10, H = 1, T = 2)
+wave_power_var_depth(depth = 5, H = 5, T = 0.5)
 
 ```
 
